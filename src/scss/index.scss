@@ -1,0 +1,91 @@
+@use "./fonts.scss"as *;
+@use "./breakpoints.scss"as *;
+
+:root {
+  --bgColor: #222222;
+  --textColor: white;
+  --font: #{$mainFont};
+
+  --xl: 1500px;
+  --lg: 1050px;
+  --md: 780px;
+  --sm: 520px;
+  --xs: 350px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  font-family: var(--font);
+
+  header {
+    h1 {
+      text-align: center;
+      font-family: $headerFont;
+      font-size: 3rem;
+
+      @keyframes pushOut {
+        to {
+          translate: 0 0;
+        }
+      }
+
+      &>span {
+
+        &:first-child,
+        &:last-child {
+          position: relative;
+        }
+
+        &:first-child::before,
+        &:last-child::before {
+          content: '';
+          position: absolute;
+          width: 200%;
+          height: 100%;
+          animation: pushOut 1.5s .5s ease forwards;
+        }
+
+        &:first-child::before {
+          right: 100%;
+          translate: 90% 0;
+          background-image: linear-gradient(to right, #222222 75%, transparent);
+        }
+
+        &:last-child::before {
+          left: 100%;
+          translate: -90% 0;
+          background-image: linear-gradient(to left, #222222 75%, transparent);
+        }
+      }
+    }
+  }
+
+  main {
+    width: 50vw;
+    margin-inline: auto;
+
+    @media screen and (max-width: #{$xl}) {
+      width: 65vw;
+    }
+
+    @media screen and (max-width: #{$lg}) {
+      width: 75vw;
+    }
+
+    @media screen and (max-width: #{$md}) {
+      width: 90vw;
+    }
+
+    @media screen and (max-width: #{$sm}) {
+      width: 100vw;
+    }
+  }
+}

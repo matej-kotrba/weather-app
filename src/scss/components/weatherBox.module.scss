@@ -1,0 +1,172 @@
+@use "../breakpoints.scss"as *;
+
+.weatherBox {
+  padding: 15px;
+  box-shadow: 1px 1px 7px black;
+  border-radius: 10px;
+  min-width: 200px;
+  max-width: 350px;
+  width: 40%;
+  aspect-ratio: 1/1;
+  margin-inline: auto;
+  color: white;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.285);
+  background-blend-mode: color;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  opacity: 0;
+  animation: appear 2s ease forwards;
+
+
+
+  &>* {
+    margin-inline: auto;
+    text-align: center;
+    font-size: 2em;
+    text-shadow: 0 0 10px black;
+  }
+
+  & svg {
+    filter: drop-shadow(0 0 3px black);
+  }
+
+  & .iconValueBox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  & .tempature {
+    margin-block: 5px;
+    font-size: 4rem;
+  }
+
+  & .windCircle {
+    width: max(20%, 75px);
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 4px white solid;
+    margin-right: 15px;
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    place-items: center;
+
+    &::before {
+      content: '';
+      width: 25%;
+      aspect-ratio: 1/1;
+      position: absolute;
+      background-color: rgb(255, 107, 107);
+      border: 2px solid white;
+      left: 50%;
+      top: 0%;
+      translate: -50% -50%;
+      rotate: 45deg;
+    }
+  }
+
+  & .popup {
+
+    position: relative;
+
+    &::before {
+      content: 'This is sample text';
+      font-size: 1rem;
+      position: absolute;
+      display: grid;
+      place-items: center;
+      min-width: 100%;
+      min-height: 100%;
+      padding-inline: 10px;
+      white-space: nowrap;
+      background-color: #1e1e1e;
+      color: white;
+      bottom: 125%;
+      left: 50%;
+      translate: -50% 0;
+      border-radius: 4px;
+      box-shadow: 1px 1px 8px 0px black;
+
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  .weather::before {
+    content: 'Rain within one hour';
+  }
+
+  @media screen and (max-width: #{$xl}) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: #{$lg}) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: #{$md}) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: #{$sm}) {
+    width: 90%;
+  }
+}
+
+.forecastContainer {
+  padding-block: 15px;
+
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 15px;
+
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+}
+
+.weatherBoxSmall {
+  scroll-snap-align: start;
+  scroll-margin-inline-start: 25px;
+  width: 140px;
+  padding: 10px;
+  aspect-ratio: 1/1;
+  background-size: cover;
+  border-radius: 8px;
+  box-shadow: 1px 1px 4px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.285);
+  background-blend-mode: color;
+  opacity: 0;
+  animation: appear 1s ease forwards;
+
+  & * {
+    text-shadow: 0 0 5px black;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
