@@ -1,6 +1,5 @@
-const path = require("path");
 const axios = require("axios");
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+require("dotenv").config();
 
 exports.handler = async function (event, context) {
   const name = event.queryStringParameters.name;
