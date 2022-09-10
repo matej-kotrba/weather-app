@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { TiZoom } from "react-icons/ti";
 import {
@@ -82,8 +82,17 @@ function TextField() {
     if (dispatch && inputRef.current?.value) {
       fetchDataByLocation(dispatch, inputRef.current?.value);
       fetchForecastByLocation(dispatch, inputRef.current?.value);
+      localStorage.setItem("lastLocation", inputRef.current?.value);
     }
   }
+
+  useEffect(() => {
+    const storageLastLocation = localStorage.getItem("lastLocation");
+    if (storageLastLocation !== null && dispatch) {
+      fetchDataByLocation(dispatch, storageLastLocation);
+      fetchForecastByLocation(dispatch, storageLastLocation);
+    }
+  }, [dispatch]);
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {

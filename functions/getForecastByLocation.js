@@ -21,7 +21,7 @@ exports.handler = async function (event, context) {
       let min = date.getUTCMinutes();
       let hours = date.getUTCHours();
       let datum = date.getUTCDate();
-      let month = date.getUTCMonth();
+      let month = date.getUTCMonth() + 1;
 
       let timeString = `${hours < 10 ? "0" + hours : hours}:${
         min < 10 ? "0" + min : min

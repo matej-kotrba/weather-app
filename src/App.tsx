@@ -6,6 +6,7 @@ import {
   reducerStateForecast,
 } from "./types/reducerTypes";
 import WeatherPage from "./page/weatherPage";
+import Footer from "./components/Footer";
 
 export const WeatherContext = createContext<{
   state: reducerStateCurrent & reducerStateForecast;
@@ -60,6 +61,9 @@ function App() {
         <main>
           <WeatherPage />
         </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </WeatherContext.Provider>
   );

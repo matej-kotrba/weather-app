@@ -21,6 +21,7 @@
 }
 
 body {
+  min-height: 100vh;
   background-color: var(--bgColor);
   color: var(--textColor);
   font-family: var(--font);
@@ -71,6 +72,7 @@ body {
   main {
     width: 50vw;
     margin-inline: auto;
+    margin-block: 60px;
 
     @media screen and (max-width: #{$xl}) {
       width: 65vw;
